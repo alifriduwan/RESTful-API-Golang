@@ -15,6 +15,9 @@ func serveRoutes(r *gin.Engine) {
 	productController := controller.Product{}
 
 	productGroup := r.Group("/products")
+
+	// /products?search=tu	<< query string
+
 	productGroup.GET("", productController.FindAll)
 	productGroup.GET("/:id", productController.FindOne)
 	productGroup.DELETE("", productController.Create)

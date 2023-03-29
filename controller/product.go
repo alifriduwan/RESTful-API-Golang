@@ -10,11 +10,18 @@ type Product struct {
 }
 
 func (p Product) FindAll(ctx *gin.Context) { //method หาสินค้าทั้งหมด
-	ctx.JSON(http.StatusOK, gin.H{"FindAll": "OK"})
+	search := ctx.Query("search")
+	categoryId := ctx.Query("categoryId")
+	ctx.JSON(http.StatusOK, gin.H{
+		"FindAll":    "OK",
+		"Search":     search,
+		"CatagoryID": categoryId,
+	})
 }
 
 func (p Product) FindOne(ctx *gin.Context) { //method หาสินค้าตัวเดียว
-
+	id := ctx.Param("id")
+	ctx.JSON(http.StatusOK, gin.H{"id": id})
 }
 
 func (p Product) Create(ctx *gin.Context) {
